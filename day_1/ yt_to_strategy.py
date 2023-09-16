@@ -6,6 +6,34 @@ This is part of my '7 Days of LangChain' series.
 Check out the explanation about the code on my Twitter (@JorisTechTalk)
 
 """
+"""
+Docs: https://python.langchain.com/docs/use_cases/summarization
+
+A central question for building a summarizer is how to pass your documents 
+into the LLM's context window. Two common approaches for this are:
+
+Stuff: Simply "stuff" all your documents into a single prompt. This is the 
+simplest approach (see here for more on the StuffDocumentsChains, which is used for this method).
+
+Map-reduce: Summarize each document on it's own in a "map" step and then 
+"reduce" the summaries into a final summary (see here for more on the 
+MapReduceDocumentsChain, which is used for this method).
+
+Refine: The refine documents chain constructs a response by looping over the input 
+documents and iteratively updating its answer. For each document, it passes all
+ non-document inputs, the current document, and the latest intermediate answer 
+ to an LLM chain to get a new answer.
+This can be easily run with the chain_type="refine" specified.
+"""
+
+"""
+TODO:
+print number tokens
+split by knowing nnumber of tokens
+Try return_intermediate_steps=True,
+try map reduce
+"""
+
 
 import os
 
