@@ -29,7 +29,7 @@ This can be easily run with the chain_type="refine" specified.
 """
 TODO:
 print number tokens
-split by knowing nnumber of tokens
+split by knowing number of tokens
 Try return_intermediate_steps=True,
 try map reduce
 """
@@ -57,9 +57,16 @@ with get_openai_callback() as cb:
     url = "https://www.youtube.com/watch?v=aV4jKPFOjvk"
     loader = YoutubeLoader.from_youtube_url(url, add_video_info=True)
     data = loader.load()
-    # data = [Document(page_content="when I was in college..., metadata={'source': 'aV4jKPFOjvk', 'title': 'The 4-Hour Workday (Focused Work Changed My Life)', 'description': 'Unknown', 'view_count': 186314, 'thumbnail_url': 'https://i.ytimg.com/vi/aV4jKPFOjvk/hq720.jpg', 'publish_date': '2023-01-01 00:00:00', 'length': 1938, 'author': 'Dan Koe'})]
-    #print(data)
-
+    # data = [Document(page_content="when I was in college...'
+    # , metadata={'source': 'aV4jKPFOjvk', 'title': 'The 4-Hour Workday (Focused Work Changed My Life)'
+    # , 'description': 'Unknown', 'view_count': 186314
+    # , 'thumbnail_url': 'https://i.ytimg.com/vi/aV4jKPFOjvk/hq720.jpg'
+    # , 'publish_date': '2023-01-01 00:00:00', 'length': 1938, 'author': 'Dan Koe'})]
+    print(data)
+    num_chars = len(data[0].page_content)
+    num_words = len(data[0].page_content.split(' '))
+    print(f'#words={num_words} #chars={num_chars}')
+    exit()
     # Split the transcript into shorter chunks.
     # First create the text splitter. The chunk_size is the maximum number of tokens in each chunk.
     # With the new gpt-3.5-turbo-16k model, you actually don't need it in this example, but it's good to know how to do it.
